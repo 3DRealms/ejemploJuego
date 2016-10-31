@@ -5,8 +5,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +13,10 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class Tablero extends JPanel implements Runnable {
+import javax.swing.*;
+import java.awt.event.*;
+
+public class Tablero extends JPanel implements Runnable,KeyListener, MouseListener  {
 	 /**
 	 * 
 	 */
@@ -26,7 +27,7 @@ public class Tablero extends JPanel implements Runnable {
 	 private Thread hilo;
 	 private int x,y;
 	 private int xMouse,yMouse;
-	 private final int DELAY=15;
+	 private final int DELAY=2;
 
 
     
@@ -44,6 +45,30 @@ public class Tablero extends JPanel implements Runnable {
 	    }
         xMouse = x=70;
         yMouse = y=200;
+        
+        
+
+        
+        
+        this.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				System.out.println("Aprestaste algo");
+				if (arg0.getKeyCode() == KeyEvent.VK_A) {
+					xMouse-=5;
+					System.out.println("Aprestaste la A");
+				}
+				if (arg0.getKeyCode() == KeyEvent.VK_D) {
+					xMouse+=5;
+				}
+				if (arg0.getKeyCode() == KeyEvent.VK_W) {
+					yMouse-= 5;
+				}
+				if (arg0.getKeyCode() == KeyEvent.VK_S) {
+					yMouse+=5;
+				}
+			}
+		});
 
         addMouseListener(new MouseAdapter() {
 
@@ -82,6 +107,10 @@ public class Tablero extends JPanel implements Runnable {
         g.dispose();
     }
     
+    public boolean isFocusable(){
+    	return true;
+    	}
+    
     /* METODO DONDE SE ACTUALIZAN LAS COORDENADAS PARA LAS
     POSICIONES DE LAS IMAGNES */
     public void ciclo(){
@@ -114,6 +143,54 @@ public class Tablero extends JPanel implements Runnable {
             }
         }
     }
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
 
